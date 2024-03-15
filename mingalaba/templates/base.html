@@ -6,11 +6,14 @@
         <meta charset="utf-8" />
         <title>
             {% block title %}
-            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+                {% if page.seo_title %}
+                    {{ page.seo_title }}
+                {% else %}
+                    {{ page.title }}
+                {% endif %}
             {% endblock %}
             {% block title_suffix %}
-            {% wagtail_site as current_site %}
-            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+                | Mingalaba
             {% endblock %}
         </title>
         {% if page.search_description %}
@@ -34,9 +37,22 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
+        {% comment %}
+        {% block header %}
+            {% include "includes/header.html" with parent=site_root calling_page=self %}
+        {% endblock header %}
+        {% endcomment %}
+
+
         {% block content %}{% endblock %}
 
+        <!-- NOTE TO SELF: adjust after contact page for get_footer -->
+
         {# Global javascript #}
+
+        {% block js_functions %}
+        {% endblock %}
+
         <script type="text/javascript" src="{% static 'js/mingalaba.js' %}"></script>
 
         {% block extra_js %}
