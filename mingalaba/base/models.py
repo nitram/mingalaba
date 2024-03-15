@@ -44,13 +44,13 @@ class Phone(DraftStateMixin, RevisionMixin, models.Model):
 
 
 class Address(DraftStateMixin, RevisionMixin, models.Model):
-    street1 = models.CharField(max_length=254)
-    street2 = models.CharField(blank=True, max_length=254)
-    apartment = models.CharField(blank=True, max_length=254, verbose_name="Apartment / Building")
+    street1 = models.CharField(max_length=254, null=True)
+    street2 = models.CharField(blank=True, max_length=254, null=True)
+    apartment = models.CharField(blank=True, max_length=254, null=True, verbose_name="Apartment / Building")
     state = models.CharField(max_length=254, null=True)
     country = models.CharField(max_length=254, null=True)
     city = models.CharField(max_length=254, null=True)
-    zipcode = models.CharField(max_length=5)
+    zipcode = models.CharField(max_length=5, null=True)
 
     panels = [
         FieldPanel("street1"),
