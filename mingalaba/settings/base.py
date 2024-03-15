@@ -24,6 +24,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    "mingalaba.base",
     "mingalaba.home",
     "mingalaba.search",
     "wagtail.contrib.forms",
