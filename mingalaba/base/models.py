@@ -7,6 +7,7 @@ from wagtail.admin.panels import FieldPanel, FieldRowPanel
 from wagtail.models import (
     DraftStateMixin,
     LockableMixin,
+    Page,
     RevisionMixin,
 )
 from wagtail.snippets.models import register_snippet
@@ -102,3 +103,29 @@ class Socials(DraftStateMixin, RevisionMixin, models.Model):
 
     def __str__(self):
         return self.type
+
+
+class AboutPage(Page):
+    pass
+
+
+class GalleryPage(Page):
+
+    # Hero section
+    gallery_banner = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True, 
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Banner image (landscape)"
+    )
+
+    # Admin panel
+    content_panels = Page.content_panels + [
+        FieldPanel("gallery_banner")
+    ]
+
+
+class ContactPage(Page):
+    pass
