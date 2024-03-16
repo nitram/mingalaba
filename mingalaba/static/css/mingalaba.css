@@ -1,0 +1,262 @@
+/* Global styles */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* CSS Variables */
+:root {
+    --brand: #84342C;
+    --darkbrand: #421A16;
+    --logo-pink: #F39EBF;
+    --white: #fff;
+    --cream: #ddd;
+    --font--primary: "Cormorant", serif;
+    /* stylelint-disable */
+    --font--secondary: "Jost", sans-serif;
+    /* stylelint-enable */
+    --font-sm: 1rem;
+    --font-md: 1.125rem;
+}
+
+html {
+    font-size: 18px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* Body */
+  
+body {
+    font-family: var(--font--secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+    background: var(--brand);
+    color: var(--cream);
+    min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: var(--font-md);
+        line-height: 1.55;
+    }
+}
+
+
+/* Headings and Paragraphs */
+
+h1, h2 {
+    font-family: var(--font--primary);
+    font-weight: 400;
+}
+
+h1, h2, h3 {
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 6rem;
+    line-height: 1.16;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.25;
+}
+
+h3, h3 {
+    font-family: var(--font--secondary);
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-md);
+    line-height: 1.35;
+}
+
+p {
+    font-family: var(--font--secondary);
+    font-style: normal;
+    font-weight: 400;
+    font-size: var(--font-sm);
+    line-height: 1.5;
+    color: var(--cream);
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: var(--font-md);
+        line-height: 1.55;
+    }
+
+    h1 {
+        font-size: 7.5rem;
+        line-height: 1.07;
+    }
+
+    h2 {
+        font-size: 3.75rem;
+        line-height: 1.09;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    p {
+        font-size: var(--font-md);
+        line-height: 1.5;
+        /* margin: 0 0 30px; */
+    }
+}
+
+
+/* Links, Buttons */
+
+a, a:hover {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+.cta {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+
+.cta > .circle {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 1.5px solid var(--darkbrand);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta > .circle > .bi-arrow-right {
+    position: relative;
+    left: 0;
+    font-size: var(--font-md);
+}
+
+.cta > .cta-text {
+    font-weight: 500;
+    font-size: var(--font-md);
+    overflow: hidden;
+
+    padding: 10px 0;
+    background-color: var(--brand);
+    border-radius: 10%;
+    position: relative;
+    left: -10px;
+}
+
+.cta > .cta-text > .load-line {
+    width: 100%;
+    height: 1.5px;
+    position: relative;
+    left: -100%;
+    background-color: var(--white);
+}
+
+.cta > .circle,
+.bi-arrow-right,
+.cta > .cta-text  {
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.cta:hover > .circle,
+.cta:focus > .circle {
+    background-color: var(--darkbrand);
+}
+
+.cta:hover > .circle > .bi-arrow-right,
+.cta:focus > .circle > .bi-arrow-right {
+    left: 5px;
+}
+
+.cta:hover > .cta-text,
+.cta:focus > .cta-text {
+    left: 10px;
+}
+
+@keyframes load {
+    0% {
+        left: -100%;
+    }
+    20% {
+        left: 0;
+    }
+    25% {
+        left: 0;
+    }
+    45% {
+        left: 100%;
+    }
+    50% {
+        left: 100%;
+    }
+    70% {
+        left: 0;
+    }
+    75% {
+        left: 0;
+    }
+    95% {
+        left: -100%;
+    }
+    100% {
+        left: -100%;
+    }
+
+}
+
+.cta:focus > .cta-text > .load-line {
+    animation: load 3s infinite;
+    animation-delay: 2s;
+}
+
+@media (min-width: 768px) {
+    .cta > .circle {
+        width: 100px;
+        height: 100px;
+        border: 2px solid var(--darkbrand);
+    }
+
+    .cta > .circle > .bi-arrow-right {
+        font-size: 1.5rem;
+    }
+
+    .cta > .cta-text {
+        font-size: 1.5rem;
+    }
+
+    .cta > .cta-text > .load-line {
+        height: 2px;
+    }
+}
+
+
+/* Links */
+
+ol,
+ul {
+  margin-bottom: 30px;
+}
+
+ul {
+    margin: 0 0 30px;
+  }
+  
+  @media (min-width: 768px) {
+    ul {
+      margin: 0 0 50px;
+    }
+  }
