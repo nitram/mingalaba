@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load navigation_tags wagtailcore_tags wagtailimages_tags %}
+{% load custom_tags navigation_tags wagtailcore_tags wagtailimages_tags %}
 {% load static %}
 
 {% block body_class %}template-homepage{% endblock %}
@@ -13,6 +13,7 @@
     <h3>subheader</h3>
     <p>This is the paragraph text.</p>
 
+    
     <!-- Button -->
     <a href="/" class="cta">
         <div class="circle">
@@ -24,4 +25,58 @@
         </div>
     </a>
 
+
+    <!-- Hero Banner -->
+    <div class="hero-section section">
+        {% image page.hero_banner original as banner_img %}
+        <div class="hero-banner fadeimg bg-cover" data-img = {{ banner_img.image.id }}></div>
+    </div>
+
+
+    <!-- Sliding Titles -->
+    <div class="animated-title">
+        {% for word in page.welcome_title|split_into_words %}
+        <div>
+            <h2 class="title-text">{{ word }}&nbsp</h2>
+        </div>
+        {% endfor %}
+    </div>
+    
+
 {% endblock content %}
+
+{% block js_functions %}
+    <script>
+        function bannerFloat() {
+            // Get references to the hero section and hero banner elements
+            const heroSection = document.querySelector('.hero-section');
+            const heroBanner = document.querySelector('.hero-banner');
+
+            // Add mousemove event listener to hero section
+            heroSection.addEventListener('mousemove', function(event) {
+                // Calculate the translation values based on cursor position
+                const translateX = -(event.clientX - heroSection.offsetWidth / 2) / 25; // Adjust the divisor to control the intensity of the translation
+                const translateY = -(event.clientY - heroSection.offsetHeight / 2) / 25; // Adjust the divisor to control the intensity of the translation
+                
+                // Apply translation transform to hero banner
+                heroBanner.style.transform = `translate(${translateX}px, ${translateY}px)`;
+            });
+
+            // Reset hero banner position when mouse leaves hero section
+            heroSection.addEventListener('mouseleave', function() {
+                // Reset translation transform to zero
+                heroBanner.style.transform = 'translate(0px, 0px)';
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        bannerFloat();
+
+        document.querySelectorAll('.fadeimg').forEach((image) => {
+            load_image(image.dataset.img, image);
+        });
+    </script>
+{% endblock %}

@@ -50,12 +50,12 @@ body {
 
 /* Headings and Paragraphs */
 
-h1, h2 {
+h1, h2, .animated-title {
     font-family: var(--font--primary);
     font-weight: 400;
 }
 
-h1, h2, h3 {
+h1, h2, h3, .animated-title {
     color: var(--white);
     text-transform: uppercase;
 }
@@ -248,15 +248,75 @@ a, a:hover {
 
 ol,
 ul {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 ul {
     margin: 0 0 30px;
-  }
+}
   
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     ul {
       margin: 0 0 50px;
     }
-  }
+}
+
+
+/* Constants */
+
+.section {
+    padding: 100px 0 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Text opening effect */
+.animated-title > div {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.animated-title .title-text {
+    margin: 0;
+    transition: all 0.5s ease;
+
+    opacity: 0;
+    transform: translateY(-50%);
+}
+
+.animated-title .show-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Image effects */
+
+.fadeimg {
+    opacity: 0;
+    transition: 1s opacity ease-in-out;
+}
+
+.bg-cover {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* Homepage */
+
+.hero-banner {
+    overflow: hidden; /* Ensure overflow is hidden to prevent scrollbars */
+}
+
+.hero-banner {
+    height: 40vw;
+    width: 70vw;
+
+    transition: transform 0.3s ease-out;
+}
+
+
+/* Welcome page */

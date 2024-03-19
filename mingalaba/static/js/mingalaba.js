@@ -1,9 +1,9 @@
-const navigation = document.querySelector('[data-navigation]');
-const mobileNavigation = navigation.querySelector('[data-mobile-navigation]');
+// const navigation = document.querySelector('[data-navigation]');
+// const mobileNavigation = navigation.querySelector('[data-mobile-navigation]');
 const body = document.querySelector('body');
-const mobileNavigationToggle = navigation.querySelector(
-  '[data-mobile-navigation-toggle]',
-);
+// const mobileNavigationToggle = navigation.querySelector(
+//   '[data-mobile-navigation-toggle]',
+// );
 
 
 // Mobile Navigation
@@ -17,6 +17,33 @@ function toggleMobileNavigation() {
     mobileNavigation.hidden = true;
     mobileNavigationToggle.setAttribute('aria-expanded', 'false');
   }
+}
+
+
+// Function to check if an element is in the viewport
+function isInViewport(element) {
+    var rect = element.getBoundingClientRect();
+    
+    return (
+        rect.top >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+}
+
+
+// Function to handle scroll event
+function handleScroll() {
+    var title = document.querySelector('.animated-title');
+
+    // Check if the welcome title is in the viewport
+    if (isInViewport(title)) {
+        // Wait for 1 second and then add class to trigger animation
+        document.querySelectorAll('.animated-title .title-text').forEach((text) => {
+            setTimeout(function() {
+                text.classList.add('show-text');
+            }, 300);
+        });
+    }        
 }
 
 
@@ -47,7 +74,10 @@ async function load_image(image, container) {
 // Main: Funciton calls
 document.addEventListener('DOMContentLoaded', () => {
 
-    mobileNavigationToggle.addEventListener('click', () => {
-        toggleMobileNavigation();
-    });
+    // mobileNavigationToggle.addEventListener('click', () => {
+    //     toggleMobileNavigation();
+    // });
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
 });
